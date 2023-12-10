@@ -59,10 +59,6 @@
         if (ingredients.Count <= 0) return;
         if (player.Ingredient != null) return;
         if (currentProgress >= maxProgress) return;
-        if (ingredients[0].tag == "Trash") return;
-    
-        if (interactionSound != "") 
-    		soundManager.Play($"KitchenUtensils/{interactionSound}");
     
         ++ currentProgress;
         UpdateProgressBar();
@@ -78,8 +74,6 @@
     {
         if (player.Ingredient != null) return;
         if (ingredients.Count <= 0) return;
-    
-        soundManager.Play("Player/PickUpAndPutDown1");
     
         currentProgress = 0;
     
@@ -100,9 +94,7 @@
             currentProgress = 0;
             UpdateProgressBar();
         }
-    
-        soundManager.Play("Player/PickUpAndPutDown2");
-    
+        
         ingredients.Add(player.Ingredient);
         ingredients[ingredients.Count - 1].transform.position = foodPos[ingredients.Count - 1].position;
         ingredients[ingredients.Count - 1].transform.parent = foodPos[ingredients.Count - 1];
@@ -142,14 +134,13 @@
     
             CanInteractWithPlayer = true;
     
-            **interactionSound = "";
+            interactionSound = "";
             successSound = "TeaPotAndWaterPurifier";
         }
     
         public override void Interaction()
         {
             if (player.Ingredient == null) return;
-            if (player.Ingredient.tag == "Trash") return;
             if (player.Ingredient != null)
             {
                 ingredients.Add(player.Ingredient);
@@ -161,7 +152,7 @@
             base.Interaction();
         }
     
-        protected override void MakeResult(GameObject result)
+        protected override void MakeResult(Enums.Result result)
         {
             base.MakeResult(result);
             currentProgress = 0;
