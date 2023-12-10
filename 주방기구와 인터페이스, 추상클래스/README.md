@@ -120,7 +120,7 @@
         {
             GetUtensilData();
     
-    				base.Initialize();
+    		base.Initialize();
     
             CanInteractWithPlayer = true;
             IsPlaceable = true;
