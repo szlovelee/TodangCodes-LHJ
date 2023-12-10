@@ -79,52 +79,52 @@ public class KitchenInteraction : MonoBehaviour, IInteractable
 
 
     public virtual void Interaction()
-{
-    if (ingredients.Count <= 0) return;
-    if (player.Ingredient != null) return;
-    if (currentProgress >= maxProgress) return;
-
-    ++ currentProgress;
-    UpdateProgressBar();
-
-    if (currentProgress == maxProgress)
     {
-        CheckValidity();
+        if (ingredients.Count <= 0) return;
+        if (player.Ingredient != null) return;
+        if (currentProgress >= maxProgress) return;
+    
+        ++ currentProgress;
         UpdateProgressBar();
-    }
-}
-
-public virtual void PickUp()
-{
-    if (player.Ingredient != null) return;
-    if (ingredients.Count <= 0) return;
-
-    currentProgress = 0;
-
-    ingredients[ingredients.Count - 1].transform.parent = player.foodPos;
-    ingredients[ingredients.Count - 1].transform.localPosition = Vector3.zero;
-    ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
-    player.Ingredient = ingredients[ingredients.Count - 1];
-    ingredients.RemoveAt(ingredients.Count - 1);
-}
-
-public virtual void PutDown()
-{
-    if (player.Ingredient == null) return;
-    if (ingredients.Count == foodPos.Length) return;
-
-    if (currentProgress != 0)
-    {
-        currentProgress = 0;
-        UpdateProgressBar();
+    
+        if (currentProgress == maxProgress)
+        {
+            CheckValidity();
+            UpdateProgressBar();
+        }
     }
     
-    ingredients.Add(player.Ingredient);
-    ingredients[ingredients.Count - 1].transform.position = foodPos[ingredients.Count - 1].position;
-    ingredients[ingredients.Count - 1].transform.parent = foodPos[ingredients.Count - 1];
-    ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
-    player.Ingredient = null;
-}
+    public virtual void PickUp()
+    {
+        if (player.Ingredient != null) return;
+        if (ingredients.Count <= 0) return;
+    
+        currentProgress = 0;
+    
+        ingredients[ingredients.Count - 1].transform.parent = player.foodPos;
+        ingredients[ingredients.Count - 1].transform.localPosition = Vector3.zero;
+        ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
+        player.Ingredient = ingredients[ingredients.Count - 1];
+        ingredients.RemoveAt(ingredients.Count - 1);
+    }
+    
+    public virtual void PutDown()
+    {
+        if (player.Ingredient == null) return;
+        if (ingredients.Count == foodPos.Length) return;
+    
+        if (currentProgress != 0)
+        {
+            currentProgress = 0;
+            UpdateProgressBar();
+        }
+        
+        ingredients.Add(player.Ingredient);
+        ingredients[ingredients.Count - 1].transform.position = foodPos[ingredients.Count - 1].position;
+        ingredients[ingredients.Count - 1].transform.parent = foodPos[ingredients.Count - 1];
+        ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
+        player.Ingredient = null;
+    }
 
     protected virtual void CheckValidity()
     {
