@@ -79,57 +79,60 @@ public class KitchenInteraction : MonoBehaviour, IInteractable
 
 
     public virtual void Interaction()
+{
+    if (ingredients.Count <= 0) return;
+    if (player.Ingredient != null) return;
+    if (currentProgress >= maxProgress) return;
+    if (ingredients[0].tag == "Trash") return;
+
+    if (interactionSound != "") 
+		soundManager.Play($"KitchenUtensils/{interactionSound}");
+
+    ++ currentProgress;
+    UpdateProgressBar();
+
+    if (currentProgress == maxProgress)
     {
-        if (ingredients.Count <= 0) return;
-        if (player.Ingredient != null) return;
-        if (currentProgress >= maxProgress) return;
-
-        ++ currentProgress;
-
+        CheckValidity();
         UpdateProgressBar();
-
-        if (currentProgress == maxProgress)
-        {
-            CheckValidity();
-            UpdateProgressBar();
-        }
     }
+}
 
+public virtual void PickUp()
+{
+    if (player.Ingredient != null) return;
+    if (ingredients.Count <= 0) return;
 
-    public virtual void PickUp()
+    soundManager.Play("Player/PickUpAndPutDown1");
+
+    currentProgress = 0;
+
+    ingredients[ingredients.Count - 1].transform.parent = player.foodPos;
+    ingredients[ingredients.Count - 1].transform.localPosition = Vector3.zero;
+    ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
+    player.Ingredient = ingredients[ingredients.Count - 1];
+    ingredients.RemoveAt(ingredients.Count - 1);
+}
+
+public virtual void PutDown()
+{
+    if (player.Ingredient == null) return;
+    if (ingredients.Count == foodPos.Length) return;
+
+    if (currentProgress != 0)
     {
-        if (player.Ingredient != null) return;
-        if (ingredients.Count <= 0) return;
-
         currentProgress = 0;
         UpdateProgressBar();
-
-        ingredients[ingredients.Count - 1].transform.parent = player.foodPos;
-        ingredients[ingredients.Count - 1].transform.localPosition = Vector3.zero;
-        ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
-        player.Ingredient = ingredients[ingredients.Count - 1];
-        ingredients.RemoveAt(ingredients.Count - 1);
     }
 
+    soundManager.Play("Player/PickUpAndPutDown2");
 
-    public virtual void PutDown()
-    {
-        if (player.Ingredient == null) return;
-        if (ingredients.Count == foodPos.Length) return;
-
-        if (currentProgress != 0)
-        {
-            currentProgress = 0;
-            UpdateProgressBar();
-        }
-        
-        ingredients.Add(player.Ingredient);
-        ingredients[ingredients.Count - 1].transform.position = foodPos[ingredients.Count - 1].position;
-        ingredients[ingredients.Count - 1].transform.parent = foodPos[ingredients.Count - 1];
-        ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
-        player.Ingredient = null;
-    }
-
+    ingredients.Add(player.Ingredient);
+    ingredients[ingredients.Count - 1].transform.position = foodPos[ingredients.Count - 1].position;
+    ingredients[ingredients.Count - 1].transform.parent = foodPos[ingredients.Count - 1];
+    ingredients[ingredients.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
+    player.Ingredient = null;
+}
 
     protected virtual void CheckValidity()
     {
