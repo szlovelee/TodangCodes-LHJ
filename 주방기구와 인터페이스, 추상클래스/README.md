@@ -1,6 +1,7 @@
 ## 개요
 
-![제목 없는 동영상 - Clipchamp로 제작 (2).gif](https://prod-files-secure.s3.us-west-2.amazonaws.com/eff6a25e-c9a6-4236-986c-e48114834981/64cc36ab-6605-4c8e-9c2d-b15312183f54/%EC%A0%9C%EB%AA%A9_%EC%97%86%EB%8A%94_%EB%8F%99%EC%98%81%EC%83%81_-_Clipchamp%EB%A1%9C_%EC%A0%9C%EC%9E%91_(2).gif)
+![제목 없는 동영상 - Clipchamp로 제작 (2)](https://github.com/szlovelee/TodangCodes-LHJ/assets/77392694/4f48a856-699c-4ce4-b3c8-c76986639b72)
+
 
 - 서로 다른 기능을 수행하는 주방기구들과 플레이어가 상호작용 해야 하는 상황에서 구조 고민
 - 상속 구조를 통해서 코드 재사용 및 통일성 있는 메서드 호출
@@ -14,7 +15,8 @@
 
 ## 상속 구조와 인터페이스
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/eff6a25e-c9a6-4236-986c-e48114834981/d8c47a49-f6ce-4d42-9826-16ff1265dd6b/Untitled.png)
+![Untitled (1)](https://github.com/szlovelee/TodangCodes-LHJ/assets/77392694/0f45197e-cd44-4223-9183-6f8f88c566fb)
+
 
 - 인터페이스와 상속 설계로 Player에서 IInteractable을 통해 다양한 행동 가능하도록 구성
 - 이에 따라 코드의 재사용성이 높아지고, 코드 유지 보수성이 향상됨
