@@ -83,10 +83,6 @@ public class KitchenInteraction : MonoBehaviour, IInteractable
     if (ingredients.Count <= 0) return;
     if (player.Ingredient != null) return;
     if (currentProgress >= maxProgress) return;
-    if (ingredients[0].tag == "Trash") return;
-
-    if (interactionSound != "") 
-		soundManager.Play($"KitchenUtensils/{interactionSound}");
 
     ++ currentProgress;
     UpdateProgressBar();
@@ -102,8 +98,6 @@ public virtual void PickUp()
 {
     if (player.Ingredient != null) return;
     if (ingredients.Count <= 0) return;
-
-    soundManager.Play("Player/PickUpAndPutDown1");
 
     currentProgress = 0;
 
@@ -124,9 +118,7 @@ public virtual void PutDown()
         currentProgress = 0;
         UpdateProgressBar();
     }
-
-    soundManager.Play("Player/PickUpAndPutDown2");
-
+    
     ingredients.Add(player.Ingredient);
     ingredients[ingredients.Count - 1].transform.position = foodPos[ingredients.Count - 1].position;
     ingredients[ingredients.Count - 1].transform.parent = foodPos[ingredients.Count - 1];
