@@ -29,7 +29,8 @@
 
 💫 **Input System 구성**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/eff6a25e-c9a6-4236-986c-e48114834981/d37810ab-acbc-4d27-a7ae-0a1517955f05/Untitled.png)
+![Untitled](https://github.com/szlovelee/TodangCodes-LHJ/assets/77392694/ed43b601-c30b-4e26-b768-65e3178e075a)
+
 
 <br><br>
 
@@ -43,7 +44,7 @@
 
 ### - **마우스 좌클릭과 UI 버튼 입력의 겹침 오류 현상 -**
 
-![기술 고민 - 현지 (1).png](https://prod-files-secure.s3.us-west-2.amazonaws.com/416a3fd2-4c79-4ffa-a804-98a6fd1c8f6a/2b521fb3-c396-464d-929f-580e220b2cc0/%EA%B8%B0%EC%88%A0_%EA%B3%A0%EB%AF%BC_-_%ED%98%84%EC%A7%80_(1).png)
+![기술 고민 - 현지 (1)](https://github.com/szlovelee/TodangCodes-LHJ/assets/77392694/ceb676cd-536d-47f2-99b4-a07ad591b11e)
 
 <br>
 
