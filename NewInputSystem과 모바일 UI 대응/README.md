@@ -3,9 +3,11 @@
 - 프로젝트의 효율을 위해 NewInputSystem을 활용하여 여러 디바이스에서 대응이 가능하도록 함
 - NewInputSystem을 활용하는 과정에서 UI와 관련된 문제점이 여러 부분에서 발생
 
+<br><br>
 
 ---
 
+<br>
 
 ## New Input System 활용
 
@@ -21,9 +23,11 @@
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/eff6a25e-c9a6-4236-986c-e48114834981/d37810ab-acbc-4d27-a7ae-0a1517955f05/Untitled.png)
 
+<br><br>
 
 ---
 
+<br>
 
 ## New Input System의 활용에 따른 **문제점 발생**
 
@@ -154,9 +158,11 @@
     
     - PlayerInput에서 GameSceneUIInputController 객체 생성 부분
 
+<br><br>
 
 ---
 
+<br>
 
 ## 개선점 생각하기
 
@@ -171,9 +177,11 @@
 
 - Input System이 여러 개 존재하고, 여러 씬에서 접근해서 통제해야 하는 상황이 되었을 때는 **Input을 전체적으로 관리하는 매니저 클래스를 만드는 것**도 좋은 방안이었을 것 같다고 생각.
 
+<br><br>
 
 ---
 
+<br>
 
 ## 주요 메서드
 
