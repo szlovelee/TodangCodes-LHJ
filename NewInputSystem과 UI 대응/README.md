@@ -232,6 +232,8 @@
     ```
     
     - 가장 마지막에 열린 UI가 가장 먼저 닫혀야 하므로, 선입후출 구조의 Stack 자료구조 활용해서 열린 UI를 관리
+ 
+      <br>
     
     ```csharp
     public class UI_Base : MonoBehaviour
