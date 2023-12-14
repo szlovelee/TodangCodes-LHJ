@@ -166,6 +166,8 @@
     - GameSceneUIInputController에서 이벤트에 Callback을 연결하는 메서드
 
     <br>
+
+  
     ```csharp
     private void Init()
     {
