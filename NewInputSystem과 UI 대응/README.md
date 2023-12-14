@@ -187,6 +187,79 @@
 
 ---
 
+## 추가 기능 구현
+
+### 영업 외의 씬에서 ESC키 입력에 따라 최상위 UI를 닫거나 게임을 종료하는 기능
+
+- 새로운 InputSystem 추가
+![Desktop Screenshot 2023 12 14 - 23 11 30 93](https://github.com/szlovelee/TodangCodes-LHJ/assets/77392694/0ea37150-35da-40c2-ad32-914afca8baf5)
+
+- 열려 있는 최상위 UI를 닫기 위해 기존의 UIManager와 UI_Base구조 활용
+    
+    ```csharp
+    public class UIManager : Singleton<UIManager>
+    {
+    	private Stack<UI_Base> _uiOnScreen = new Stack<UI_Base>();
+    	
+    	public void SetUIOnScreen(UI_Base ui, bool isOpen)
+    	{
+    	    if (isOpen)
+    	    {
+    	        if (ui is UI_Dialog) return;
+    	        if (_uiOnScreen.Contains(ui)) return;
+    	
+    	        _uiOnScreen.Push(ui);
+    	    }
+    	    else
+    	    {
+    	        if (!_uiOnScreen.Contains(ui)) return;
+    	
+    	        while (_uiOnScreen.Peek() != ui)
+    	        {
+    	            _uiOnScreen.Pop();
+    	        }
+    	
+    	        _uiOnScreen.Pop();
+    	    }
+    	}
+    	
+    	public UI_Base GetCurrentUI()
+    	{
+    	    if (_uiOnScreen.TryPeek(out UI_Base ui)) return ui;
+    	    return null;
+    	}
+    }
+    ```
+    
+    - 가장 마지막에 열린 UI가 가장 먼저 닫혀야 하므로, 선입후출 구조의 Stack 자료구조 활용해서 열린 UI를 관리
+    
+    ```csharp
+    public class UI_Base : MonoBehaviour
+    {
+        public virtual void OpenUI(bool isSound = true, bool isAnimated = false)
+        {
+            ...
+    
+            UIManager.Instance.SetUIOnScreen(this, true);
+    
+            ...
+        }
+    
+        public virtual void CloseUI(bool isSound = true, bool isAnimated = false)
+        {
+            UIManager.Instance.SetUIOnScreen(this, false);
+    
+            ...
+        }
+    }
+    ```
+    
+    - UI_Base를 상속받는 UI들이 ESC 입력에 따른 비활성화의 적용 대상이므로,  기존에 UI_Base에서 UI를 활성/비활성 하기 위해 사용 중이던 OpenUI(), CloseUI() 메서드 활용
+ 
+<br>
+
+---
+
 <br>
 
 ## 개선점 생각하기
